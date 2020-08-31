@@ -15,4 +15,10 @@ public class BorrowerInformationServiceImpl implements BorrowerInformationServic
 	@Autowired
 	BorrowerInformationDAO borrowerInformationDAO;
 
+	@Override
+	public List<LoanInformation> searchLoan(String borrower_name, Long loanAmount, String loanNumber) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
