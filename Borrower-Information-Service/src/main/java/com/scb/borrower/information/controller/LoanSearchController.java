@@ -27,4 +27,20 @@ public class LoanSearchController {
 	@Autowired
 	BorrowerInformationService borrowerInformationService;
 
+	@GetMapping(value = "/search", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<LoanInformation>> searchLoanByBorrowerInformation(
+			@RequestBody LoanSearchRequestPayload payload) throws Exception {
+		List<LoanInformation> listOfLoanInfor = borrowerInformationService
+				.searchLoan(payload.getBorrower().getFullName(), payload.getLoanAmount(), payload.getLoanNumber());
+		if(!listOfLoanInfor.isEmpty()) {
+			return new ResponseEntity<List<LoanInformation>>(listOfLoanInfor, HttpStatus.OK);
+		}else {
+			throw new RecordNotFoundException("Record Not found...!");
+		}
+	}
+	
+	@GetMapping(value = "/welcome")
+	public String eurekaTest() {
+		return "Welcome Borrower information service registered in eureka server.. running on port:::"+env.getProperty("local.server.port");
+	}
 }
