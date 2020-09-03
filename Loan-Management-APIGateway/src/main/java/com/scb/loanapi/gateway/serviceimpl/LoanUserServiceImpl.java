@@ -1,4 +1,4 @@
-package com.scb.loanapi.userapi.serviceImpl;
+package com.scb.loanapi.gateway.serviceimpl;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -9,9 +9,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.scb.loanapi.userapi.model.UserDetail;
-import com.scb.loanapi.userapi.repoistory.LoanUserRepository;
-import com.scb.loanapi.userapi.service.LoanUserService;
+import com.scb.loanapi.gateway.model.UserDetail;
+import com.scb.loanapi.gateway.repository.LoanUserRepository;
+import com.scb.loanapi.gateway.service.LoanUserService;
+
 
 @Service
 public class LoanUserServiceImpl implements LoanUserService {
@@ -31,24 +32,5 @@ public class LoanUserServiceImpl implements LoanUserService {
 				new ArrayList<>());
 	}
 
-	@Override
-	public UserDetail saveRecord(UserDetail user) {
-		return loanUserRepository.save(user);
-	}
-
-	
-	@Override
-	public UserDetail getUserDetailByEmail(String emailId) {
-		UserDetail userDetail = loanUserRepository.findByEmailId(emailId);
-
-		if (userDetail !=null) {
-			return userDetail;
-
-		} else {
-			throw new UsernameNotFoundException(emailId);
-		}
-
-	}
-	 
 
 }

@@ -8,5 +8,7 @@ import com.scb.loanapi.userapi.model.UserDetail;
 
 public interface LoanUserService extends UserDetailsService {
 
-	Optional<UserDetail> getUserDetailByEmail(String emailId);
+	UserDetail getUserDetailByEmail(String emailId);
+	
+	UserDetail saveRecord(UserDetail user);
 }
